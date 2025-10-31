@@ -17,11 +17,11 @@ def read_item(item_id: int):
     return {"message": f'Retrieved item with ID {item_id}.'}
 
 @router.get('/all')
-def read_all_items():
+def read_all_items(get: Item):
     return {"message": 'Retrieved all items.'}
 
 @router.get('/search/')            
-def search_items(query: str):
+def search_items(query: Item):
     return {"message": f'Search results for query: {query}.'}
 
 
