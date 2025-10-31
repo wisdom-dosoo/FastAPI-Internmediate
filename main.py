@@ -1,6 +1,11 @@
 from fastapi import FastAPI
+from routers import post_op, get_op
 
 app = FastAPI()
+
+app.include_router(post_op.router)
+app.include_router(get_op.router)
+
 
 @app.get("/home")
 def read_home():
