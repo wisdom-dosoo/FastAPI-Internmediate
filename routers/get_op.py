@@ -1,12 +1,16 @@
 from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
 
 router = APIRouter(
     prefix="/get_op",
     tags=["get_op"]
 )
-@router.get('/')
-def read_root():
-    return {"message": f'Get operation root endpoint.'}
+
+class Item (BaseModel):
+    title: str
+    description: str = None
+    container: str
+    published: bool = True
 
 @router.get('/{item_id}')
 def read_item(item_id: int):
@@ -19,3 +23,8 @@ def read_all_items():
 @router.get('/search/')            
 def search_items(query: str):
     return {"message": f'Search results for query: {query}.'}
+
+
+@router.get('/')
+def read_root():
+    return {"message": f'Get operation root endpoint.'}
